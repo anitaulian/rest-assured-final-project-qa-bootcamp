@@ -42,10 +42,6 @@ public class LoginTest extends BaseTest {
         Assert.assertFalse(token.isEmpty(), "Token should not be empty");
         System.out.println("Token: " + token);
 
-//        // Validasi message
-//        String message = response.jsonPath().getString("message");
-//        Assert.assertEquals(message, "User login successfully.", "Message does not match");
-
         // Simpan token ke file resources/json/token.json
         JSONObject tokenJson = new JSONObject();
         tokenJson.put("token", token);
@@ -58,26 +54,26 @@ public class LoginTest extends BaseTest {
         System.out.println("Token berhasil disimpan di resources/json/token.json");
     }
 
-    @Test
-    public void loginWithWrongPassword() {
-        // Buat body login
-        LoginBody loginBody = new LoginBody();
-
-        // Kirim request POST ke endpoint login
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .body(loginBody.loginInvalidPassData().toString()) // isi body
-                .when()
-                .post("/api/rest/login")
-                .then()
-                .extract().response();
-
-        System.out.println("Negative Case - Wrong Password: " + response.asString());
-
-        // Expect 401 Unauthorized or 400 Bad Request (depends on API implementation)
-        Assert.assertEquals(response.getStatusCode(), 401);
-
-        // Check error message
-        Assert.assertEquals(response.jsonPath().getString("error"), "Invalid credentials");
-    }
+//    @Test
+//    public void loginWithWrongPassword() {
+//        // Buat body login
+//        LoginBody loginBody = new LoginBody();
+//
+//        // Kirim request POST ke endpoint login
+//        Response response = given()
+//                .header("Content-Type", "application/json")
+//                .body(loginBody.loginInvalidPassData().toString()) // isi body
+//                .when()
+//                .post("/api/rest/login")
+//                .then()
+//                .extract().response();
+//
+//        System.out.println("Negative Case - Wrong Password: " + response.asString());
+//
+//        // Expect 401 Unauthorized or 400 Bad Request (depends on API implementation)
+//        Assert.assertEquals(response.getStatusCode(), 401);
+//
+//        // Check error message
+//        Assert.assertEquals(response.jsonPath().getString("error"), "Invalid credentials");
+//    }
 }

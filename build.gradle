@@ -25,7 +25,7 @@ dependencies {
 test {
     useTestNG {
         // arahkan ke file testng.xml sesuai lokasi
-        suites 'src/test/java/runner/Login.xml'
+        suites 'src/test/java/runner/testng.xml'
     }
 
     testLogging {
@@ -33,3 +33,4 @@ test {
         events "passed", "skipped", "failed" // tampilkan event penting
     }
 }
+
